@@ -31,18 +31,16 @@
 ;;; Code:
 (require 'flycheck)
 
-(defvar flycheck-scribble-lang-regexp (rx line-start (* space) "#lang" (+ space) "scribble")
-  "Regexp which match scribble #lang definition.")
-
 (flycheck-define-checker scribble
-  "Nix checker using scribble."
-  :command ("scribble" "--quiet" "--text" "--dest" temporary-directory source)
+  "A Scribble checker using the scribble compiler.
+
+See URL `http://docs.racket-lang.org/scribble/'."
+  :command ("scribble" "--text" "--dest" temporary-directory source)
   :error-patterns
   ((error line-start (file-name) ":" line ":" column ":" (message) line-end))
-  :predicate (lambda ()
-               (save-excursion
-                 (goto-char (point-min))
-                 (re-search-forward flycheck-scribble-lang-regexp nil 'no-error)))
+  :error-filter (lambda (errors)
+                  (flycheck-sanitize-errors
+                   (flycheck-increment-error-columns errors)))
   :modes scribble-mode)
 
 ;;;###autoload
