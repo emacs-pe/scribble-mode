@@ -29,7 +29,7 @@ $(PKGDIR): Cask
 	touch $(PKGDIR)
 
 README.md: el2markdown.el $(SRCS)
-	$(CASK) exec $(EMACSBATCH) -l $< scribble.el -f el2markdown-write-readme
+	$(CASK) exec $(EMACSBATCH) -l $< scribble-mode.el -f el2markdown-write-readme
 
 el2markdown.el:
 	$(WGET) -q -O $@ "https://github.com/Lindydancer/el2markdown/raw/master/el2markdown.el"

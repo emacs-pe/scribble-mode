@@ -1,9 +1,9 @@
 (source gnu)
 (source melpa)
 
-(package "scribble-mode" "0.1" "Major mode for editing Scribble documents.")
+(package-file "scribble-mode.el")
 
-(files "scribble.el"
+(files "scribble-mode.el"
        "flycheck-scribble.el")
 
 (depends-on "flycheck")

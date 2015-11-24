@@ -1,4 +1,4 @@
-;;; scribble.el --- Major mode for editing Scribble documents -*- lexical-binding: t; -*-
+;;; scribble-mode.el --- Major mode for editing Scribble documents -*- lexical-binding: t; -*-
 
 ;; Copyright (c) 2014 Mario Rodas <marsam@users.noreply.github.com>
 
@@ -28,24 +28,26 @@
 ;;; Commentary:
 ;; A major mode for editing Scribble documents.
 ;;
-;; You can install `geiser' to `scribble-mode-hook' to eldoc and auto completion
-;; support :
+;; You can install [geiser][] to `scribble-mode-hook' to eldoc and auto
+;; completion support:
 ;;
 ;;     (add-hook 'scribble-mode-hook #'geiser-mode)
+;;
+;; [geiser]: http://www.nongnu.org/geiser/
 
 ;;; Code:
 
-(defgroup scribble nil
+(defgroup scribble-mode nil
   "Major mode for editing Scribble documents."
-  :prefix "scribble-"
+  :prefix "scribble-mode-"
   :group 'languages)
 
-(defcustom scribble-executable "scribble"
+(defcustom scribble-mode-executable "scribble"
   "Path to scribble executable."
   :type 'string
-  :group 'scribble)
+  :group 'scribble-mode)
 
-(defvar scribble-imenu-generic-expression
+(defvar scribble-mode-imenu-generic-expression
   `(("Title"
      ,(rx "@title" (? (: "[" (* (not (any "]")))) "]") "{" (group (+ (not (any "}")))) "}")
      1)
@@ -111,12 +113,12 @@
   (set (make-local-variable 'font-lock-defaults)
        '(scribble-mode-font-lock-keywords))
   (set (make-local-variable 'imenu-generic-expression)
-       scribble-imenu-generic-expression)
+       scribble-mode-imenu-generic-expression)
   (imenu-add-to-menubar "Contents"))
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.scrbl\\'" . scribble-mode))
 
-(provide 'scribble)
+(provide 'scribble-mode)
 
-;;; scribble.el ends here
+;;; scribble-mode.el ends here
