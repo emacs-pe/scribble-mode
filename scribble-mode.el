@@ -78,6 +78,9 @@
     (modify-syntax-entry ?\; "' 2" table)
     (modify-syntax-entry ?\n ">"   table)
 
+    (modify-syntax-entry ?# "w 14" table)
+    (modify-syntax-entry ?| "_ 23bn" table)
+
     ;; Brackets and braces balance for editing convenience.
     (modify-syntax-entry ?\[ "(]  " table)
     (modify-syntax-entry ?\] ")[  " table)
