@@ -99,7 +99,7 @@
     (,(rx (group "#:" (+ (not (any space ")")))))
      (1 font-lock-keyword-face))
     ;; #t #f
-    (,(regexp-opt '("#t" "#f") 'symbols)
+    (,(regexp-opt '("#t" "#true" "#f" "#false") 'symbols)
      (1 font-lock-constant-face))
     (,(rx (group "@" (+ (not (any space "[" "{" "("))))) ; FIXME
      (1 font-lock-function-name-face)))
